@@ -1,0 +1,55 @@
+---
+title: "The Gender Wage Gap and Occupational Sorting"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+load("input/cps2017.RData")
+#check for stargazer package
+if(!require("stargazer")) {
+  install.packages("stargazer")
+}
+```
+
+## Introduction
+
+State the research question (in your own words). This is also a good place to indicate why this is an interesting research question. Use your sociological imagination here. 
+
+## Data
+
+Describe the dataset being used in your own words. Describe and show the distributions of key variables in the analysis. You can copy and past the code chunk below to produce figures. Be sure to change the `figuretemplate` name in each code chunk to a unique name or you will get a duplicate naming error. 
+
+```{r figuretemplate, echo=FALSE, fig.cap="A Caption"}
+#code (e.g. plot, hist, barplot, boxplot) to produce the figure
+```
+
+## Results 
+
+Report what you found. Typically, this will involve a figure or multiple figures showing the key relationship (e.g. scatterplot, comparative boxplots, etc) and a table of regression model results. Be sure to interpret your results in straightforward concrete terms. Your results table(s) should include measures of statistical significance such as the standard error and an asterisks if the p-value was less than 0.05. Round all values in the table(s) to three decimal places.
+
+You can use the code chunk template below to place the regression results into a nice format using the stargazer package. 
+```{r regression_template, echo=FALSE, results='asis'}
+#make some models
+model1 <- lm()
+model2 <- lm()
+model3 <- lm()
+
+#change type to "text" for inline test output, change back to "html" for knitting to html
+stargazer(model1, model2, model3,
+          type="html",
+          keep.stat=c("n","rsq"),
+          star.cutoffs = c(0.05,0.01,0.001),
+          #covariate.labels = c("Covariate labels here"), #uncomment to add nice labels
+          dep.var.labels.include = FALSE,
+          dep.var.caption="Friend nominations",
+          title = "Your caption here",
+          notes.append=TRUE,
+          notes.align="l",
+          notes=c("Some notes","Some more notes"),
+          header=FALSE)
+```
+
+## Conclusions
+
+Summarize the findings and discuss any weaknesses or ideas for future research.
